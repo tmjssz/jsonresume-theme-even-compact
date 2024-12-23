@@ -1,7 +1,7 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
-import Icon from './icon.js'
 import Link from './link.js'
+import MaterialIcon from './material-icon.js'
 
 /**
  * @param {string} countryCode
@@ -20,36 +20,39 @@ export default function Header(basics = {}) {
   return html`
     <header class="masthead">
       ${image && html`<img src="${image}" alt="" />`}
-      <div>${name && html`<h1>${name}</h1>`} ${label && html`<h2>${label}</h2>`}</div>
+      <div>
+        <div class="title-row">
+          ${name && html`<h1>${name}</h1>`}
+          ${location?.city &&
+          html`
+            <div class="icon-item">
+              ${MaterialIcon('pin')}
+              <span>${location.city}${location.countryCode && html`, ${formatCountry(location.countryCode)}`}</span>
+            </div>
+          `}
+        </div>
+        ${label && html`<h2>${label}</h2>`}
+      </div>
       ${summary && html`<article>${markdown(summary)}</article>`}
       <ul class="icon-list">
-        ${location?.city &&
-        html`
-          <li>
-            ${Icon('map-pin')} ${location.city}${location.countryCode && html`, ${formatCountry(location.countryCode)}`}
-          </li>
-        `}
         ${email &&
         html`
-          <li>
-            ${Icon('mail')}
+          <li class="icon-item">
+            ${MaterialIcon('email')}
             <a href="mailto:${email}">${email}</a>
           </li>
         `}
         ${phone &&
         html`
-          <li>
-            ${Icon('phone')}
+          <li class="icon-item">
+            ${MaterialIcon('smartphone')}
             <a href="tel:${phone.replace(/\s/g, '')}">${phone}</a>
           </li>
         `}
-        ${url && html`<li>${Icon('link')} ${Link(url)}</li>`}
+        ${url && html`<li class="icon-item">${MaterialIcon('link')} ${Link(url)}</li>`}
         ${profiles.map(
           ({ network, url, username }) => html`
-            <li>
-              ${network && Icon(network, 'user')} ${Link(url, username)}
-              ${network && html`<span class="network">(${network})</span>`}
-            </li>
+            <li class="icon-item">${network && MaterialIcon(network)} ${Link(url, username)}</li>
           `,
         )}
       </ul>
