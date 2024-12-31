@@ -1,7 +1,9 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
+import Article from './article.js'
 import Duration from './duration.js'
 import Link from './link.js'
+import Section from './section.js'
 
 /**
  * @param {string[]} roles
@@ -14,14 +16,17 @@ const formatRoles = roles => (Intl.ListFormat ? new Intl.ListFormat('en').format
  * @returns {string | false}
  */
 export default function Projects(projects = []) {
+  const firstItem = projects[0]
   return (
     projects.length > 0 &&
-    html`
-      <section id="projects">
-        <h3>Projects</h3>
-        <div class="stack">
-          ${projects.map(
-            ({
+    Section(
+      'Projects',
+      'projects',
+      html` <div class="stack">
+        ${projects.map(
+          (
+            {
+              breakBefore,
               description,
               entity,
               highlights = [],
@@ -32,36 +37,41 @@ export default function Projects(projects = []) {
               roles = [],
               type,
               url,
-            }) => html`
-              <article>
-                <header>
-                  <h4>${Link(url, name)}</h4>
-                  <div class="meta">
-                    <div>
-                      ${roles.length > 0 && html`<strong>${formatRoles(roles)}</strong>`}
-                      ${entity && html`at <strong>${entity}</strong>`}
-                    </div>
-                    ${startDate && html`<div>${Duration(startDate, endDate)}</div>`} ${type && html`<div>${type}</div>`}
-                  </div>
-                </header>
+            },
+            i,
+          ) =>
+            Article(
+              Link(url, name),
+              html`<div>
+                  ${roles.length > 0 && html`<strong>${formatRoles(roles)}</strong>`}
+                  ${entity && html`at <strong>${entity}</strong>`}
+                </div>
+                ${startDate && html`<div>${Duration(startDate, endDate)}</div>`} ${type && html`<div>${type}</div>`}`,
+              html`
                 ${description && markdown(description)}
-                ${highlights.length > 0 &&
-                html`
-                  <ul>
-                    ${highlights.map(highlight => html`<li>${markdown(highlight)}</li>`)}
-                  </ul>
-                `}
-                ${keywords.length > 0 &&
-                html`
-                  <ul class="tag-list">
-                    ${keywords.map(keyword => html`<li>${keyword}</li>`)}
-                  </ul>
-                `}
+                ${
+                  highlights.length > 0 &&
+                  html`
+                    <ul>
+                      ${highlights.map(highlight => html`<li>${markdown(highlight)}</li>`)}
+                    </ul>
+                  `
+                }
+                ${
+                  keywords.length > 0 &&
+                  html`
+                    <ul class="tag-list">
+                      ${keywords.map(keyword => html`<li>${keyword}</li>`)}
+                    </ul>
+                  `
+                }
               </article>
             `,
-          )}
-        </div>
-      </section>
-    `
+              !!breakBefore && i > 0,
+            ),
+        )}
+      </div>`,
+      !!firstItem?.breakBefore,
+    )
   )
 }

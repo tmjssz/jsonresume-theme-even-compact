@@ -1,16 +1,19 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
+import Section from './section.js'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema['references']} references
  * @returns {string | false}
  */
 export default function References(references = []) {
+  const firstItem = references[0]
   return (
     references.length > 0 &&
-    html`
-      <section id="references">
-        <h3>References</h3>
+    Section(
+      'References',
+      'references',
+      html`
         <div class="stack">
           ${references.map(
             ({ name, reference }) => html`
@@ -26,7 +29,8 @@ export default function References(references = []) {
             `,
           )}
         </div>
-      </section>
-    `
+      `,
+      !!firstItem?.breakBefore,
+    )
   )
 }

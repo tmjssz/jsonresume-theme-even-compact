@@ -1,41 +1,47 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
+import Article from './article.js'
 import Duration from './duration.js'
 import Link from './link.js'
+import Section from './section.js'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema['volunteer']} volunteer
  * @returns {string | false}
  */
 export default function Volunteer(volunteer = []) {
+  const firstItem = volunteer[0]
   return (
     volunteer.length > 0 &&
-    html`
-      <section id="volunteer">
-        <h3>Volunteer</h3>
+    Section(
+      'Volunteer',
+      'volunteer',
+      html`
         <div class="stack">
           ${volunteer.map(
-            ({ highlights = [], organization, position, startDate, endDate, summary, url }) => html`
-              <article>
-                <header>
-                  <h4>${Link(url, organization)}</h4>
-                  <div class="meta">
-                    <strong>${position}</strong>
-                    ${startDate && html`<div>${Duration(startDate, endDate)}</div>`}
-                  </div>
-                </header>
-                ${summary && markdown(summary)}
-                ${highlights.length > 0 &&
+            ({ highlights = [], organization, position, startDate, endDate, summary, url, breakBefore }, i) =>
+              Article(
+                Link(url, organization),
+                html`<div>
+                  <strong>${position}</strong>
+                  ${startDate && html`<div>${Duration(startDate, endDate)}</div>`}
+                </div>`,
+
                 html`
-                  <ul>
-                    ${highlights.map(highlight => html`<li>${markdown(highlight)}</li>`)}
-                  </ul>
-                `}
-              </article>
-            `,
+                  ${summary && markdown(summary)}
+                  ${highlights.length > 0 &&
+                  html`
+                    <ul>
+                      ${highlights.map(highlight => html`<li>${markdown(highlight)}</li>`)}
+                    </ul>
+                  `}
+                `,
+                !!breakBefore && i > 0,
+              ),
           )}
         </div>
-      </section>
-    `
+      `,
+      !!firstItem?.breakBefore,
+    )
   )
 }

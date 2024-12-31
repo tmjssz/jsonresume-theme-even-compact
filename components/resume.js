@@ -28,7 +28,11 @@ export default function Resume(resume, { css, js } = {}) {
         <meta charset="utf-8" />
         ${Meta(resume.basics)}
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700&display=swap" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700&display=swap" />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+        />
         ${css &&
         html`<style>
           ${css}
@@ -39,10 +43,16 @@ export default function Resume(resume, { css, js } = {}) {
         </script>`}
       </head>
       <body>
-        ${Header(resume.basics)} ${Work(resume.work)} ${Volunteer(resume.volunteer)} ${Education(resume.education)}
-        ${Projects(resume.projects)} ${Awards(resume.awards)} ${Certificates(resume.certificates)}
-        ${Publications(resume.publications)} ${Skills(resume.skills)} ${Languages(resume.languages)}
-        ${Interests(resume.interests)} ${References(resume.references)}
+        ${Header(resume.basics)}
+        <div class="main-content">
+          ${Work(resume.work)} ${Volunteer(resume.volunteer)} ${Education(resume.education)}
+          ${Projects(resume.projects)} ${Awards(resume.awards)} ${Certificates(resume.certificates)}
+          ${Publications(resume.publications)}
+        </div>
+        <div class="side-content">
+          ${Skills(resume.skills)} ${Languages(resume.languages)} ${Interests(resume.interests)}
+          ${References(resume.references)}
+        </div>
       </body>
     </html>`
 }
