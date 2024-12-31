@@ -31,7 +31,7 @@ export default function Work(work = []) {
         <div class="stack">
           ${nestedWork.map(
             ({ description, name, url, items = [] }) => html`
-              <article ${items.length > 1 ? '' : 'class="work-item single"'}>
+              <article ${items.length > 1 ? '' : 'class="single"'}>
                 <header>
                   <h4>${items.length > 1 ? Link(url, name) : items[0].position}</h4>
                   ${description && items.length > 1 && html`<div class="meta"><div>${description}</div></div>`}
