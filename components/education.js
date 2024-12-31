@@ -13,9 +13,9 @@ export default function Education(education = []) {
   return (
     education.length > 0 &&
     Section(
+      'Education',
       'education',
       html`
-        <h3>Education</h3>
         <div class="stack">
           ${education.map(
             ({ area, courses = [], institution, startDate, endDate, studyType, url }) => html`

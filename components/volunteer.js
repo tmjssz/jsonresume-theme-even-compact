@@ -13,9 +13,9 @@ export default function Volunteer(volunteer = []) {
   return (
     volunteer.length > 0 &&
     Section(
+      'Volunteer',
       'volunteer',
       html`
-        <h3>Volunteer</h3>
         <div class="stack">
           ${volunteer.map(
             ({ highlights = [], organization, position, startDate, endDate, summary, url }) => html`

@@ -12,9 +12,9 @@ export default function Awards(awards = []) {
   return (
     awards.length > 0 &&
     Section(
+      'Awards',
       'awards',
       html`
-        <h3>Awards</h3>
         <div class="stack">
           ${awards.map(
             ({ awarder, date, summary, title }) => html`

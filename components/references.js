@@ -11,9 +11,9 @@ export default function References(references = []) {
   return (
     references.length > 0 &&
     Section(
+      'References',
       'references',
       html`
-        <h3>References</h3>
         <div class="stack">
           ${references.map(
             ({ name, reference }) => html`

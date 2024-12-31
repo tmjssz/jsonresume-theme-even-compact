@@ -12,9 +12,9 @@ export default function Certificates(certificates = []) {
   return (
     certificates.length > 0 &&
     Section(
+      'Certificates',
       'certificates',
       html`
-        <h3>Certificates</h3>
         <div class="stack">
           ${certificates.map(
             ({ date, issuer, name, url }) => html`

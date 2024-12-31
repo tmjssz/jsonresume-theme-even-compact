@@ -10,9 +10,9 @@ export default function Languages(languages = []) {
   return (
     languages.length > 0 &&
     Section(
+      'Languages',
       'languages',
       html`
-        <h3>Languages</h3>
         <div class="grid-list">
           ${languages.map(
             ({ fluency, language }) => html`<div>${language && html`<h5>${language}</h5>`} ${fluency}</div>`,

@@ -19,26 +19,26 @@ export default function Projects(projects = []) {
   return (
     projects.length > 0 &&
     Section(
+      'Projects',
       'projects',
-      html` <h3>Projects</h3>
-        <div class="stack">
-          ${projects.map(
-            (
-              {
-                breakBefore,
-                description,
-                entity,
-                highlights = [],
-                keywords = [],
-                name,
-                startDate,
-                endDate,
-                roles = [],
-                type,
-                url,
-              },
-              i,
-            ) => html`
+      html` <div class="stack">
+        ${projects.map(
+          (
+            {
+              breakBefore,
+              description,
+              entity,
+              highlights = [],
+              keywords = [],
+              name,
+              startDate,
+              endDate,
+              roles = [],
+              type,
+              url,
+            },
+            i,
+          ) => html`
              ${breakBefore && i > 0 ? '<article class="page-break-before">' : '<article>'}
                 <header>
                   <h4>${Link(url, name)}</h4>
@@ -69,8 +69,8 @@ export default function Projects(projects = []) {
                 }
               </article>
             `,
-          )}
-        </div>`,
+        )}
+      </div>`,
       !!firstItem?.breakBefore,
     )
   )

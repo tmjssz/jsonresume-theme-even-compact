@@ -25,9 +25,9 @@ export default function Work(work = []) {
   return (
     work.length > 0 &&
     Section(
+      'Experience',
       'work',
       html`
-        <h3>Experience</h3>
         <div class="stack">
           ${nestedWork.map(
             ({ description, name, url, items = [] }) => html`

@@ -10,9 +10,9 @@ export default function Interests(interests = []) {
   return (
     interests.length > 0 &&
     Section(
+      'Interests',
       'interests',
       html`
-        <h3>Interests</h3>
         <div class="grid-list">
           ${interests.map(
             ({ keywords = [], name }) => html`
