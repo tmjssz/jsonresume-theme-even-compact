@@ -27,24 +27,26 @@ export default function Work(work = []) {
     Section(
       'work',
       html`
+        <h3>Experience</h3>
         <div class="stack">
           ${nestedWork.map(
             ({ description, name, url, items = [] }) => html`
-              <article>
+              <article ${items.length > 1 ? '' : 'class="work-item single"'}>
                 <header>
-                  <h4>${Link(url, name)}</h4>
-                  <div class="meta">${description && html`<div>${description}</div>`}</div>
+                  <h4>${items.length > 1 ? Link(url, name) : items[0].position}</h4>
+                  ${description && items.length > 1 && html`<div class="meta"><div>${description}</div></div>`}
                 </header>
                 <div class="timeline">
                   ${items.map(
-                    ({ highlights = [], location, position, startDate, endDate, summary }) => html`
+                    ({ highlights = [], location, summary, startDate, endDate, position }) => html`
                       <div>
                         <div>
-                          <h5>${position}</h5>
-                          <div class="meta">
-                            ${startDate && html`<div>${Duration(startDate, endDate)}</div>`}
-                            ${location && html`<div>${location}</div>`}
-                          </div>
+                          ${items.length > 1 && html`<h5>${position}</h5>`}
+                          <span>
+                            ${items.length <= 1 && html`<strong class="discrete-link">${Link(url, name)}</strong>`}
+                            <span class="meta"> ${location && html`${items.length <= 1 ? '· ' : ''}${location}`} </span>
+                          </span>
+                          <div class="meta">${startDate && html`<div>${Duration(startDate, endDate)}</div>`}</div>
                         </div>
                         ${summary && markdown(summary)}
                         ${highlights.length > 0 &&
