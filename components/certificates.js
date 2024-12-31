@@ -1,16 +1,19 @@
 import { html } from '@rbardini/html'
 import DateTime from './date-time.js'
 import Link from './link.js'
+import Section from './section.js'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema['certificates']} certificates
  * @returns {string | false}
  */
 export default function Certificates(certificates = []) {
+  const firstItem = certificates[0]
   return (
     certificates.length > 0 &&
-    html`
-      <section id="certificates">
+    Section(
+      'certificates',
+      html`
         <h3>Certificates</h3>
         <div class="stack">
           ${certificates.map(
@@ -26,7 +29,8 @@ export default function Certificates(certificates = []) {
             `,
           )}
         </div>
-      </section>
-    `
+      `,
+      !!firstItem?.breakBefore,
+    )
   )
 }

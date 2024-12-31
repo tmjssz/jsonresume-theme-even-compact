@@ -2,16 +2,19 @@ import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
 import Duration from './duration.js'
 import Link from './link.js'
+import Section from './section.js'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema['education']} education
  * @returns {string | false}
  */
 export default function Education(education = []) {
+  const firstItem = education[0]
   return (
     education.length > 0 &&
-    html`
-      <section id="education">
+    Section(
+      'education',
+      html`
         <h3>Education</h3>
         <div class="stack">
           ${education.map(
@@ -36,7 +39,8 @@ export default function Education(education = []) {
             `,
           )}
         </div>
-      </section>
-    `
+      `,
+      !!firstItem?.breakBefore,
+    )
   )
 }

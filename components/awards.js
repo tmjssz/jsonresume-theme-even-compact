@@ -1,16 +1,19 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
 import DateTime from './date-time.js'
+import Section from './section.js'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema['awards']} awards
  * @returns {string | false}
  */
 export default function Awards(awards = []) {
+  const firstItem = awards[0]
   return (
     awards.length > 0 &&
-    html`
-      <section id="awards">
+    Section(
+      'awards',
+      html`
         <h3>Awards</h3>
         <div class="stack">
           ${awards.map(
@@ -27,7 +30,8 @@ export default function Awards(awards = []) {
             `,
           )}
         </div>
-      </section>
-    `
+      `,
+      !!firstItem?.breakBefore,
+    )
   )
 }

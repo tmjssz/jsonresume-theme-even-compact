@@ -2,6 +2,7 @@ import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
 import Duration from './duration.js'
 import Link from './link.js'
+import Section from './section.js'
 
 /** @typedef {NonNullable<import('../schema.d.ts').ResumeSchema['work']>[number]} Work */
 /** @typedef {Pick<Work, 'highlights' | 'location' | 'position' | 'startDate' | 'endDate' | 'summary'>} NestedWorkItem */
@@ -19,11 +20,13 @@ export default function Work(work = []) {
     return acc
   }, /** @type {NestedWork[]} */ ([]))
 
+  const firstItem = work[0]
+
   return (
     work.length > 0 &&
-    html`
-      <section id="work">
-        <h3>Work</h3>
+    Section(
+      'work',
+      html`
         <div class="stack">
           ${nestedWork.map(
             ({ description, name, url, items = [] }) => html`
@@ -58,7 +61,8 @@ export default function Work(work = []) {
             `,
           )}
         </div>
-      </section>
-    `
+      `,
+      !!firstItem?.breakBefore,
+    )
   )
 }

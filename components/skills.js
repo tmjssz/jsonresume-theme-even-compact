@@ -1,20 +1,23 @@
 import { html } from '@rbardini/html'
+import Section from './section.js'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema['skills']} skills
  * @returns {string | false}
  */
 export default function Skills(skills = []) {
+  const firstItem = skills[0]
   return (
     skills.length > 0 &&
-    html`
-      <section id="skills">
+    Section(
+      'skills',
+      html`
         <h3>Skills</h3>
         <div class="grid-list">
           ${skills.map(
             ({ keywords = [], name }) => html`
               <div>
-                ${name && html`<h4>${name}</h4>`}
+                ${name && html`<h5>${name}</h5>`}
                 ${keywords.length > 0 &&
                 html`
                   <ul class="tag-list">
@@ -25,7 +28,8 @@ export default function Skills(skills = []) {
             `,
           )}
         </div>
-      </section>
-    `
+      `,
+      !!firstItem?.breakBefore,
+    )
   )
 }

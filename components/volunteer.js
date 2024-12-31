@@ -2,16 +2,19 @@ import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
 import Duration from './duration.js'
 import Link from './link.js'
+import Section from './section.js'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema['volunteer']} volunteer
  * @returns {string | false}
  */
 export default function Volunteer(volunteer = []) {
+  const firstItem = volunteer[0]
   return (
     volunteer.length > 0 &&
-    html`
-      <section id="volunteer">
+    Section(
+      'volunteer',
+      html`
         <h3>Volunteer</h3>
         <div class="stack">
           ${volunteer.map(
@@ -35,7 +38,8 @@ export default function Volunteer(volunteer = []) {
             `,
           )}
         </div>
-      </section>
-    `
+      `,
+      !!firstItem?.breakBefore,
+    )
   )
 }
