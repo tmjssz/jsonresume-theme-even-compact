@@ -1,5 +1,6 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
+import Article from './article.js'
 import DateTime from './date-time.js'
 import Section from './section.js'
 
@@ -16,18 +17,13 @@ export default function Awards(awards = []) {
       'awards',
       html`
         <div class="stack">
-          ${awards.map(
-            ({ awarder, date, summary, title }) => html`
-              <article>
-                <header>
-                  <h4>${title}</h4>
-                  <div class="meta">
-                    ${awarder && html`<div>Awarded by <strong>${awarder}</strong></div>`} ${date && DateTime(date)}
-                  </div>
-                </header>
-                ${summary && markdown(summary)}
-              </article>
-            `,
+          ${awards.map(({ awarder, date, summary, title, breakBefore }, i) =>
+            Article(
+              title,
+              html`${awarder && html`<div>Awarded by <strong>${awarder}</strong></div>`} ${date && DateTime(date)}`,
+              html`${summary && markdown(summary)}`,
+              !!breakBefore && i > 0,
+            ),
           )}
         </div>
       `,

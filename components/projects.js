@@ -1,5 +1,6 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
+import Article from './article.js'
 import Duration from './duration.js'
 import Link from './link.js'
 import Section from './section.js'
@@ -38,18 +39,15 @@ export default function Projects(projects = []) {
               url,
             },
             i,
-          ) => html`
-             ${breakBefore && i > 0 ? '<article class="page-break-before">' : '<article>'}
-                <header>
-                  <h4>${Link(url, name)}</h4>
-                  <div class="meta">
-                    <div>
-                      ${roles.length > 0 && html`<strong>${formatRoles(roles)}</strong>`}
-                      ${entity && html`at <strong>${entity}</strong>`}
-                    </div>
-                    ${startDate && html`<div>${Duration(startDate, endDate)}</div>`} ${type && html`<div>${type}</div>`}
-                  </div>
-                </header>
+          ) =>
+            Article(
+              Link(url, name),
+              html`<div>
+                  ${roles.length > 0 && html`<strong>${formatRoles(roles)}</strong>`}
+                  ${entity && html`at <strong>${entity}</strong>`}
+                </div>
+                ${startDate && html`<div>${Duration(startDate, endDate)}</div>`} ${type && html`<div>${type}</div>`}`,
+              html`
                 ${description && markdown(description)}
                 ${
                   highlights.length > 0 &&
@@ -69,6 +67,8 @@ export default function Projects(projects = []) {
                 }
               </article>
             `,
+              !!breakBefore && i > 0,
+            ),
         )}
       </div>`,
       !!firstItem?.breakBefore,

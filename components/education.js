@@ -1,5 +1,6 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
+import Article from './article.js'
 import Duration from './duration.js'
 import Link from './link.js'
 import Section from './section.js'
@@ -17,25 +18,24 @@ export default function Education(education = []) {
       'education',
       html`
         <div class="stack">
-          ${education.map(
-            ({ area, courses = [], institution, startDate, endDate, studyType, url }) => html`
-              <article>
-                <header>
-                  <h4>${Link(url, institution)}</h4>
-                  <span>
-                    <strong>${studyType}</strong>
-                    <span class="meta">${area && html`· ${area}`}</span>
-                  </span>
-                  <div class="meta">${startDate && html`<div>${Duration(startDate, endDate)}</div>`}</div>
-                </header>
+          ${education.map(({ area, courses = [], institution, startDate, endDate, studyType, url, breakBefore }, i) =>
+            Article(
+              Link(url, institution),
+              html`<span>
+                  <strong>${studyType}</strong>
+                  <span>${area && html`· ${area}`}</span>
+                </span>
+                <div>${startDate && html`<div>${Duration(startDate, endDate)}</div>`}</div>`,
+              html`
                 ${courses.length > 0 &&
                 html`
                   <ul>
                     ${courses.map(course => html`<li>${markdown(course)}</li>`)}
                   </ul>
                 `}
-              </article>
-            `,
+              `,
+              !!breakBefore && i > 0,
+            ),
           )}
         </div>
       `,

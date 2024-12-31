@@ -1,5 +1,6 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
+import Article from './article.js'
 import DateTime from './date-time.js'
 import Link from './link.js'
 import Section from './section.js'
@@ -17,19 +18,16 @@ export default function Publications(publications = []) {
       'publications',
       html`
         <div class="stack">
-          ${publications.map(
-            ({ name, publisher, releaseDate, summary, url }) => html`
-              <article>
-                <header>
-                  <h4>${Link(url, name)}</h4>
-                  <div class="meta">
-                    ${publisher && html`<div>Published by <strong>${publisher}</strong></div>`}
-                    ${releaseDate && DateTime(releaseDate)}
-                  </div>
-                </header>
-                ${summary && markdown(summary)}
-              </article>
-            `,
+          ${publications.map(({ name, publisher, releaseDate, summary, url, breakBefore }, i) =>
+            Article(
+              Link(url, name),
+              html`<div>
+                ${publisher && html`<div>Published by <strong>${publisher}</strong></div>`}
+                ${releaseDate && DateTime(releaseDate)}
+              </div>`,
+              html`${summary && markdown(summary)}`,
+              !!breakBefore && i > 0,
+            ),
           )}
         </div>
       `,

@@ -230,11 +230,11 @@ blockquote > * + *,
   row-gap: 3em;
 }
 
-#work article.single .timeline {
+#work article .single .timeline {
   margin-top: 0;
 }
 
-#work article.single header {
+#work article .single header {
   display: flex;
   justify-content: space-between;
   align-items: center;
