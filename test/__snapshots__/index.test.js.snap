@@ -94,44 +94,47 @@ customElements.define('time-duration', TimeDuration)
           
       <section id="work">
         <h3>Experience</h3>
-        
         <div class="stack">
-          
+        
       <article>
         <header>
           <h4>CEO/President</h4>
-          
+          <div class="meta">
+        <span>
+          <strong class="discrete-link color-primary"><a href="http://piedpiper.example.com">Pied Piper</a></strong>
+          <span class="meta"> · Palo Alto, CA </span>
+        </span>
+        <div><time-duration><time datetime="2013-12-01">Dec 2013</time> – <time datetime="2014-12-01">Dec 2014</time></time-duration></div>
+      </div>
         </header>
         
-                <div class="single">
-                  <div class="timeline">
+      <div class="single">
+        <div class="timeline">
+          
+              <div>
+                <div>
+                  
+                  <span>
+                    <span class="meta"> </span>
+                  </span>
+                  <div class="meta">
                     
-                        <div>
-                          <div>
-                            
-                            <span>
-                              <strong class="discrete-link"><a href="http://piedpiper.example.com">Pied Piper</a></strong>
-                              <span class="meta">
-                                · Palo Alto, CA
-                              </span>
-                            </span>
-                            <div class="meta"><div><time-duration><time datetime="2013-12-01">Dec 2013</time> – <time datetime="2014-12-01">Dec 2014</time></time-duration></div></div>
-                          </div>
-                          <p>Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.</p>
-                          
-                            <ul>
-                              <li><p>Build an algorithm for artist to detect if their music was violating copy right infringement laws</p></li><li><p>Successfully won Techcrunch Disrupt</p></li><li><p>Optimized an algorithm that holds the current world record for Weisman Scores</p></li>
-                            </ul>
-                          
-                        </div>
-                      
                   </div>
                 </div>
-              
+                <p>Pied Piper is a multi-platform technology based on a proprietary universal compression algorithm that has consistently fielded high Weisman Scores™ that are not merely competitive, but approach the theoretical limit of lossless compression.</p>
+                
+                  <ul>
+                    <li><p>Build an algorithm for artist to detect if their music was violating copy right infringement laws</p></li><li><p>Successfully won Techcrunch Disrupt</p></li><li><p>Optimized an algorithm that holds the current world record for Weisman Scores</p></li>
+                  </ul>
+                
+              </div>
+            
+        </div>
+      </div>
+    
       </article>
     
-        </div>
-      
+      </div>
       </section>
      
       <section id="volunteer">
@@ -170,7 +173,7 @@ customElements.define('time-duration', TimeDuration)
         <header>
           <h4><a href="https://www.ou.edu/">University of Oklahoma</a></h4>
           <div class="meta"><span>
-                  <strong>Bachelor</strong>
+                  <strong class="color-primary">Bachelor</strong>
                   <span>· Information Technology</span>
                 </span>
                 <div><div><time-duration><time datetime="2011-06-01">Jun 2011</time> – <time datetime="2014-01-01">Jan 2014</time></time-duration></div></div></div>

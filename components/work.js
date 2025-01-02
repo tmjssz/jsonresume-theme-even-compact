@@ -10,11 +10,67 @@ import Section from './section.js'
 /** @typedef {Pick<Work, 'description' | 'name' | 'url'> & { items: NestedWorkItem[], breakBefore?: boolean }} NestedWork */
 
 /**
+ * @param {NestedWork} nestedWork
+ * @returns {string | false}
+ */
+export function NestedWork({ breakBefore, description, name, url, items = [] }) {
+  if (items.length === 0) return false
+
+  const hasSingleItem = items.length === 1
+  const firstItem = items[0]
+
+  const title = hasSingleItem ? firstItem.position : Link(url, name)
+  const subtitle = hasSingleItem
+    ? html`
+        <span>
+          <strong class="discrete-link color-primary">${Link(url, name)}</strong>
+          <span class="meta"> ${firstItem.location && html`· ${firstItem.location}`} </span>
+        </span>
+        <div>${firstItem.startDate && Duration(firstItem.startDate, firstItem.endDate)}</div>
+      `
+    : description
+
+  return Article(
+    title,
+    subtitle,
+    html`
+      <div${hasSingleItem ? ' class="single"' : ''}>
+        <div class="timeline">
+          ${items.map(
+            ({ highlights = [], location, summary, startDate, endDate, position }) => html`
+              <div>
+                <div>
+                  ${!hasSingleItem && html`<h5>${position}</h5>`}
+                  <span>
+                    <span class="meta">${location && !hasSingleItem ? location : ''} </span>
+                  </span>
+                  <div class="meta">
+                    ${startDate && !hasSingleItem && html`<div>${Duration(startDate, endDate)}</div>`}
+                  </div>
+                </div>
+                ${summary && markdown(summary)}
+                ${highlights.length > 0 &&
+                html`
+                  <ul>
+                    ${highlights.map(highlight => html`<li>${markdown(highlight)}</li>`)}
+                  </ul>
+                `}
+              </div>
+            `,
+          )}
+        </div>
+      </div>
+    `,
+    breakBefore,
+  )
+}
+
+/**
  * @param {import('../schema.d.ts').ResumeSchema['work']} work
  * @returns {string | false}
  */
 export default function Work(work = []) {
-  const nestedWork = work.reduce((acc, { description, name, url, ...rest }) => {
+  const nestedWorks = work.reduce((acc, { description, name, url, ...rest }) => {
     const prev = acc[acc.length - 1]
     if (prev && prev.name === name && prev.description === description && prev.url === url) prev.items.push(rest)
     else acc.push({ description, name, url, items: [rest] })
@@ -28,46 +84,11 @@ export default function Work(work = []) {
     Section(
       'Experience',
       'work',
-      html`
-        <div class="stack">
-          ${nestedWork.map(({ breakBefore, description, name, url, items = [] }, i) =>
-            Article(
-              items.length > 1 ? Link(url, name) : items[0].position,
-              description && items.length > 1 ? description : '',
-              html`
-                <div ${items.length > 1 ? '' : 'class="single"'}>
-                  <div class="timeline">
-                    ${items.map(
-                      ({ highlights = [], location, summary, startDate, endDate, position }) => html`
-                        <div>
-                          <div>
-                            ${items.length > 1 && html`<h5>${position}</h5>`}
-                            <span>
-                              ${items.length <= 1 && html`<strong class="discrete-link">${Link(url, name)}</strong>`}
-                              <span class="meta">
-                                ${location && html`${items.length <= 1 ? '· ' : ''}${location}`}
-                              </span>
-                            </span>
-                            <div class="meta">${startDate && html`<div>${Duration(startDate, endDate)}</div>`}</div>
-                          </div>
-                          ${summary && markdown(summary)}
-                          ${highlights.length > 0 &&
-                          html`
-                            <ul>
-                              ${highlights.map(highlight => html`<li>${markdown(highlight)}</li>`)}
-                            </ul>
-                          `}
-                        </div>
-                      `,
-                    )}
-                  </div>
-                </div>
-              `,
-              !!breakBefore && i > 0,
-            ),
-          )}
-        </div>
-      `,
+      html`<div class="stack">
+        ${nestedWorks.map(({ breakBefore, ...nestedWork }, i) =>
+          NestedWork({ ...nestedWork, breakBefore: !!breakBefore && i > 0 }),
+        )}
+      </div>`,
       !!firstItem?.breakBefore,
     )
   )
