@@ -49,24 +49,19 @@ export default function Projects(projects = []) {
                 ${startDate && html`<div>${Duration(startDate, endDate)}</div>`} ${type && html`<div>${type}</div>`}`,
               html`
                 ${description && markdown(description)}
-                ${
-                  highlights.length > 0 &&
-                  html`
-                    <ul>
-                      ${highlights.map(highlight => html`<li>${markdown(highlight)}</li>`)}
-                    </ul>
-                  `
-                }
-                ${
-                  keywords.length > 0 &&
-                  html`
-                    <ul class="tag-list">
-                      ${keywords.map(keyword => html`<li>${keyword}</li>`)}
-                    </ul>
-                  `
-                }
-              </article>
-            `,
+                ${highlights.length > 0 &&
+                html`
+                  <ul>
+                    ${highlights.map(highlight => html`<li>${markdown(highlight)}</li>`)}
+                  </ul>
+                `}
+                ${keywords.length > 0 &&
+                html`
+                  <ul class="tag-list">
+                    ${keywords.map(keyword => html`<li>${keyword}</li>`)}
+                  </ul>
+                `}
+              `,
               !!breakBefore && i > 0,
             ),
         )}
