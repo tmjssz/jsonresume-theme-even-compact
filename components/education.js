@@ -22,7 +22,7 @@ export default function Education(education = []) {
             Article(
               Link(url, institution),
               html`<span>
-                  <strong>${studyType}</strong>
+                  <strong class="color-primary">${studyType}</strong>
                   <span>${area && html`· ${area}`}</span>
                 </span>
                 <div>${startDate && html`<div>${Duration(startDate, endDate)}</div>`}</div>`,
