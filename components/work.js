@@ -26,7 +26,7 @@ export function NestedWork({ breakBefore, description, name, url, items = [] }) 
           <strong class="discrete-link color-primary">${Link(url, name)}</strong>
           <span class="meta"> ${firstItem.location && html`· ${firstItem.location}`} </span>
         </span>
-        <span> ${firstItem.startDate && html`<div>${Duration(firstItem.startDate, firstItem.endDate)}</div>`} </span>
+        <div>${firstItem.startDate && Duration(firstItem.startDate, firstItem.endDate)}</div>
       `
     : description
 
