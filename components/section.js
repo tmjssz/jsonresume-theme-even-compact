@@ -4,7 +4,7 @@ export default function Section(title = '', id = '', children = '', breakBefore 
   return (
     children.length > 0 &&
     html`
-      <section ${id.length > 0 ? `id="${id}"` : ''} ${breakBefore ? 'class="page-break-before"' : ''}>
+      <section ${id.length > 0 ? `id="${id}"` : ''}${breakBefore ? ' class="page-break-before"' : ''}>
         <h3>${title}</h3>
         ${children}
       </section>

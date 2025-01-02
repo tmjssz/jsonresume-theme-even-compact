@@ -4,7 +4,7 @@ export default function Article(title = '', subtitle = '', children = '', breakB
   return (
     children.length > 0 &&
     html`
-      <article ${breakBefore ? 'class="page-break-before"' : ''}>
+      <article${breakBefore ? ' class="page-break-before"' : ''}>
         <header>
           <h4>${title}</h4>
           ${subtitle.length > 0 ? html`<div class="meta">${subtitle}</div>` : ''}

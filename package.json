@@ -1,6 +1,6 @@
 {
   "name": "@tmjssz/jsonresume-theme-even",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "A flat JSON Resume theme, compatible with the latest resume schema",
   "keywords": [
     "resume",
@@ -12,7 +12,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tmjssz/jsonresume-theme-even"
+    "url": "git+https://github.com/tmjssz/jsonresume-theme-even-compact"
   },
   "license": "MIT",
   "type": "module",
