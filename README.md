@@ -15,10 +15,10 @@ Fork of [jsonresume-theme-even](https://github.com/rbardini/jsonresume-theme-eve
 ## Installation
 
 ```console
-// Yarn
+# Yarn
 yarn add @tmjssz/jsonresume-theme-even
 
-// NPM
+# NPM
 npm install @tmjssz/jsonresume-theme-even
 ```
 
