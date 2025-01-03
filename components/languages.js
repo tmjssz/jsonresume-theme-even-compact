@@ -15,7 +15,8 @@ export default function Languages(languages = []) {
       html`
         <div class="grid-list">
           ${languages.map(
-            ({ fluency, language }) => html`<div>${language && html`<h5>${language}</h5>`} ${fluency}</div>`,
+            ({ fluency, language }) =>
+              html`<div>${language && html`<h5>${language}</h5>`} <span class="meta">${fluency}</span></div>`,
           )}
         </div>
       `,
