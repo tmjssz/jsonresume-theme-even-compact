@@ -1,9 +1,9 @@
 import { html } from '@rbardini/html'
-import markdown from '../utils/markdown.js'
-import Article from './article.js'
-import Duration from './duration.js'
-import Link from './link.js'
-import Section from './section.js'
+import markdown from '../../utils/markdown.js'
+import Article from '../general/article.js'
+import Duration from '../general/duration.js'
+import Link from '../general/link.js'
+import Section from '../general/section.js'
 
 /**
  * @param {string[]} roles
@@ -12,7 +12,7 @@ import Section from './section.js'
 const formatRoles = roles => (Intl.ListFormat ? new Intl.ListFormat('en').format(roles) : roles.join(', '))
 
 /**
- * @param {import('../schema.d.ts').ResumeSchema['projects']} projects
+ * @param {import('../../schema.d.ts').ResumeSchema['projects']} projects
  * @returns {string | false}
  */
 export default function Projects(projects = []) {

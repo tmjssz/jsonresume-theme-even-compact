@@ -1,11 +1,11 @@
 import { html } from '@rbardini/html'
-import markdown from '../utils/markdown.js'
-import Article from './article.js'
-import Duration from './duration.js'
-import Link from './link.js'
-import Section from './section.js'
+import markdown from '../../utils/markdown.js'
+import Article from '../general/article.js'
+import Duration from '../general/duration.js'
+import Link from '../general/link.js'
+import Section from '../general/section.js'
 
-/** @typedef {NonNullable<import('../schema.d.ts').ResumeSchema['work']>[number]} Work */
+/** @typedef {NonNullable<import('../../schema.d.ts').ResumeSchema['work']>[number]} Work */
 /** @typedef {Pick<Work, 'highlights' | 'location' | 'position' | 'startDate' | 'endDate' | 'summary'>} NestedWorkItem */
 /** @typedef {Pick<Work, 'description' | 'name' | 'url'> & { items: NestedWorkItem[], breakBefore?: boolean }} NestedWork */
 
@@ -66,7 +66,7 @@ export function NestedWork({ breakBefore, description, name, url, items = [] }) 
 }
 
 /**
- * @param {import('../schema.d.ts').ResumeSchema['work']} work
+ * @param {import('../../schema.d.ts').ResumeSchema['work']} work
  * @returns {string | false}
  */
 export default function Work(work = []) {

@@ -1,8 +1,8 @@
 import { html } from '@rbardini/html'
-import Section from './section.js'
+import Section from '../general/section.js'
 
 /**
- * @param {import('../schema.d.ts').ResumeSchema['languages']} languages
+ * @param {import('../../schema.d.ts').ResumeSchema['languages']} languages
  * @returns {string | false}
  */
 export default function Languages(languages = []) {
@@ -15,7 +15,8 @@ export default function Languages(languages = []) {
       html`
         <div class="grid-list">
           ${languages.map(
-            ({ fluency, language }) => html`<div>${language && html`<h5>${language}</h5>`} ${fluency}</div>`,
+            ({ fluency, language }) =>
+              html`<div>${language && html`<h5>${language}</h5>`} <span class="meta">${fluency}</span></div>`,
           )}
         </div>
       `,
