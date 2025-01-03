@@ -1,7 +1,7 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
-import Link from './link.js'
-import Icon from './icon.js'
+import Link from './general/link.js'
+import Icon from './general/icon.js'
 
 /**
  * @param {string} countryCode

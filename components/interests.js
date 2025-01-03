@@ -1,5 +1,5 @@
 import { html } from '@rbardini/html'
-import Section from './section.js'
+import Section from './general/section.js'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema['interests']} interests

@@ -1,6 +1,6 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
-import Section from './section.js'
+import Section from './general/section.js'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema['references']} references

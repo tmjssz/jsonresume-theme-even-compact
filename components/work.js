@@ -1,9 +1,9 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
-import Article from './article.js'
-import Duration from './duration.js'
-import Link from './link.js'
-import Section from './section.js'
+import Article from './general/article.js'
+import Duration from './general/duration.js'
+import Link from './general/link.js'
+import Section from './general/section.js'
 
 /** @typedef {NonNullable<import('../schema.d.ts').ResumeSchema['work']>[number]} Work */
 /** @typedef {Pick<Work, 'highlights' | 'location' | 'position' | 'startDate' | 'endDate' | 'summary'>} NestedWorkItem */

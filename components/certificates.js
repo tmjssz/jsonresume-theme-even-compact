@@ -1,8 +1,8 @@
 import { html } from '@rbardini/html'
-import Article from './article.js'
-import DateTime from './date-time.js'
-import Link from './link.js'
-import Section from './section.js'
+import Article from './general/article.js'
+import DateTime from './general/date-time.js'
+import Link from './general/link.js'
+import Section from './general/section.js'
 
 /**
  * @param {import('../schema.d.ts').ResumeSchema['certificates']} certificates
