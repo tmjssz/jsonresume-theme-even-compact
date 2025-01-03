@@ -1,7 +1,7 @@
 import { html } from '@rbardini/html'
 import markdown from '../utils/markdown.js'
 import Link from './link.js'
-import MaterialIcon from './material-icon.js'
+import Icon from './icon.js'
 
 /**
  * @param {string} countryCode
@@ -26,7 +26,7 @@ export default function Header(basics = {}) {
           ${location?.city &&
           html`
             <div class="icon-item">
-              ${MaterialIcon('pin')}
+              ${Icon('pin')}
               <span>${location.city}${location.countryCode && html`, ${formatCountry(location.countryCode)}`}</span>
             </div>
           `}
@@ -38,21 +38,21 @@ export default function Header(basics = {}) {
         ${email &&
         html`
           <li class="icon-item">
-            ${MaterialIcon('email')}
+            ${Icon('email')}
             <a href="mailto:${email}">${email}</a>
           </li>
         `}
         ${phone &&
         html`
           <li class="icon-item">
-            ${MaterialIcon('smartphone')}
+            ${Icon('smartphone')}
             <a href="tel:${phone.replace(/\s/g, '')}">${phone}</a>
           </li>
         `}
-        ${url && html`<li class="icon-item">${MaterialIcon('link')} ${Link(url)}</li>`}
+        ${url && html`<li class="icon-item">${Icon('link')} ${Link(url)}</li>`}
         ${profiles.map(
           ({ network, url, username }) => html`
-            <li class="icon-item">${network && MaterialIcon(network)} ${Link(url, username)}</li>
+            <li class="icon-item">${network && Icon(network)} ${Link(url, username)}</li>
           `,
         )}
       </ul>
