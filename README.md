@@ -1,8 +1,10 @@
 # @tmjssz/jsonresume-theme-even
 
+Fork of [jsonresume-theme-even](https://github.com/rbardini/jsonresume-theme-even).
+
 A flat [JSON Resume](https://jsonresume.org/) theme, compatible with the latest [resume schema](https://github.com/jsonresume/resume-schema).
 
-Fork of [jsonresume-theme-even](https://github.com/rbardini/jsonresume-theme-even).
+[View demo →](https://tmjssz.github.io/jsonresume-theme-even-compact/)
 
 - 💄 Markdown support
 - 📐 CSS grid layout
