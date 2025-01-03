@@ -6,6 +6,7 @@ export default defineConfig(({ mode }) => {
       outDir: '../public',
       target: 'esnext',
     },
+    base: '/jsonresume-theme-even-compact/',
     publicDir: false,
   }
 })
