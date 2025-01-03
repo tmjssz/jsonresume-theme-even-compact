@@ -1,11 +1,11 @@
 import { html } from '@rbardini/html'
-import markdown from '../utils/markdown.js'
-import Article from './general/article.js'
-import DateTime from './general/date-time.js'
-import Section from './general/section.js'
+import markdown from '../../utils/markdown.js'
+import Article from '../general/article.js'
+import DateTime from '../general/date-time.js'
+import Section from '../general/section.js'
 
 /**
- * @param {import('../schema.d.ts').ResumeSchema['awards']} awards
+ * @param {import('../../schema.d.ts').ResumeSchema['awards']} awards
  * @returns {string | false}
  */
 export default function Awards(awards = []) {

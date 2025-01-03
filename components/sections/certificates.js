@@ -1,11 +1,11 @@
 import { html } from '@rbardini/html'
-import Article from './general/article.js'
-import DateTime from './general/date-time.js'
-import Link from './general/link.js'
-import Section from './general/section.js'
+import Article from '../general/article.js'
+import DateTime from '../general/date-time.js'
+import Link from '../general/link.js'
+import Section from '../general/section.js'
 
 /**
- * @param {import('../schema.d.ts').ResumeSchema['certificates']} certificates
+ * @param {import('../../schema.d.ts').ResumeSchema['certificates']} certificates
  * @returns {string | false}
  */
 export default function Certificates(certificates = []) {

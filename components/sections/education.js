@@ -1,12 +1,12 @@
 import { html } from '@rbardini/html'
-import markdown from '../utils/markdown.js'
-import Article from './general/article.js'
-import Duration from './general/duration.js'
-import Link from './general/link.js'
-import Section from './general/section.js'
+import markdown from '../../utils/markdown.js'
+import Article from '../general/article.js'
+import Duration from '../general/duration.js'
+import Link from '../general/link.js'
+import Section from '../general/section.js'
 
 /**
- * @param {import('../schema.d.ts').ResumeSchema['education']} education
+ * @param {import('../../schema.d.ts').ResumeSchema['education']} education
  * @returns {string | false}
  */
 export default function Education(education = []) {
