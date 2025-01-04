@@ -102,7 +102,7 @@ customElements.define('time-duration', TimeDuration)
           <div class="meta">
         <span>
           <strong class="discrete-link color-primary"><a href="http://piedpiper.example.com">Pied Piper</a></strong>
-          <span class="meta"> · Palo Alto, CA </span>
+          <span>· Palo Alto, CA</span>
         </span>
         <div><time-duration><time datetime="2013-12-01">Dec 2013</time> – <time datetime="2014-12-01">Dec 2014</time></time-duration></div>
       </div>
