@@ -19,12 +19,13 @@ export function NestedWork({ breakBefore, description, name, url, items = [] }) 
   const hasSingleItem = items.length === 1
   const firstItem = items[0]
 
-  const title = hasSingleItem ? firstItem.position : Link(url, name)
+  const nameLink = Link(url, name)
+  const title = hasSingleItem ? firstItem.position : nameLink
   const subtitle = hasSingleItem
     ? html`
         <span>
-          <strong class="discrete-link color-primary">${Link(url, name)}</strong>
-          <span class="meta"> ${firstItem.location && html`· ${firstItem.location}`} </span>
+          <strong class="discrete-link color-primary">${nameLink}</strong>
+          ${firstItem.location && html`<span>${nameLink && '· '}${firstItem.location}</span>`}
         </span>
         <div>${firstItem.startDate && Duration(firstItem.startDate, firstItem.endDate)}</div>
       `
